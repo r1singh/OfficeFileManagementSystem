@@ -24,7 +24,7 @@ namespace OfficeFileManagementSystem.Controllers
         // GET: IncomingFiles
         public async Task<IActionResult> Index()
         {
-            TempData["List"] = await _context.importances.ToListAsync();
+           
             return _context.incomingFiles != null ? 
                           View(await _context.incomingFiles.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbSet.incomingFiles'  is null.");
@@ -51,7 +51,17 @@ namespace OfficeFileManagementSystem.Controllers
         // GET: IncomingFiles/Create
         public IActionResult Create()
         {
-            
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var item in _context.importances) {
+                SelectListItem listitem = new SelectListItem
+                {
+                    Text=item.Type,
+                    Value=item.Id.ToString(),
+                };
+
+            list.Add(listitem); 
+            }
+            ViewBag.dropdown=list;
             return View();
         }
 
@@ -64,8 +74,14 @@ namespace OfficeFileManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(incomingFile);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.Add(incomingFile);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception e) { 
+                            Console.WriteLine(e.ToString());    
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(incomingFile);

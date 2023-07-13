@@ -27,6 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Importance_ID" class="control-label"></label>
+                @Html.DropDownList("Importance_ID", ViewBag.dropdown,"Select","Id")
                
                 <span asp-validation-for="Importance_ID" class="text-danger"></span>
             </div>
