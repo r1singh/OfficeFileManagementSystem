@@ -33,7 +33,7 @@ namespace OfficeFileManagementSystem.Migrations
                     Emp_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Employee_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Employee_Designation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contact_Number = table.Column<int>(type: "int", maxLength: 10, nullable: true)
+                    Contact_Number = table.Column<int>(type: "int", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,7 +64,8 @@ namespace OfficeFileManagementSystem.Migrations
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_Allowed = table.Column<DateTime>(type: "Date", nullable: false),
                     FileType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Importance_ID = table.Column<int>(type: "int", nullable: false)
+                    Importance_ID = table.Column<int>(type: "int", nullable: false),
+
                 },
                 constraints: table =>
                 {

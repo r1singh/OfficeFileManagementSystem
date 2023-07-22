@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +14,9 @@ namespace OfficeFileManagementSystem.Controllers
     {
         private readonly ApplicationDbSet _context;
 
-        public AssignmentsController(ApplicationDbSet context)
+        public AssignmentsController()
         {
-            _context = context;
+            _context = new  ApplicationDbSet();
         }
 
         // GET: Assignments

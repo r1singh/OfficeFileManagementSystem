@@ -7,22 +7,24 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class= 'btn btn-outline-dark' asp-action="Create">
+        <span class="glyphicon glyphicon-plus"></span>
+        Create</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="success">
             <th>
-                @Html.DisplayNameFor(model => model.FileName)
+                @Html.DisplayName("File Name")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date_Allowed)
+                @Html.DisplayName("Receiving Date")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FileType)
+                @Html.DisplayName("File Type")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Importance_ID)
+                @Html.DisplayName("Priority")
             </th>
             <th></th>
         </tr>
@@ -40,13 +42,20 @@
                 @Html.DisplayFor(modelItem => item.FileType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Importance_ID)
+                    @{
+                        foreach(var i in ViewBag.Impt){
+                            if (@item.Importance_ID == i.Id)
+                            {
+                                @i.Type    
+                            }
+
+                }
+               }
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Incoming_File_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Incoming_File_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Incoming_File_Id">Delete</a>
-            </td>
+            <td align="center">
+                    <a value="Edit" class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Incoming_File_Id"> Edit|</a>
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Incoming_File_Id"> Details </a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Incoming_File_Id"> Delete </a>
         </tr>
 }
     </tbody>

@@ -2,45 +2,46 @@
 
 
 
-<h1>Create</h1>
+<h2 class="navbar">Incoming File Record </h2>
 
-<h4>IncomingFile</h4>
+<h4>Create</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FileName" class="control-label"></label>
+                <label asp-for="FileName" class="control-label"> File Name</label>
                 <input asp-for="FileName" class="form-control" />
                 <span asp-validation-for="FileName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date_Allowed" class="control-label"></label>
+                <label asp-for="Date_Allowed" class="control-label"> Receiving Date</label>
                 <input asp-for="Date_Allowed" class="form-control" />
                 <span asp-validation-for="Date_Allowed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FileType" class="control-label"></label>
+                <label asp-for="FileType" class="control-label"> File Type</label>
                 <input asp-for="FileType" class="form-control" />
                 <span asp-validation-for="FileType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Importance_ID" class="control-label"></label>
+                <label asp-for="Importance_ID" class="control-label">Priority</label>
+                <span class="dropdown"></span>
                 @Html.DropDownList("Importance_ID", ViewBag.dropdown,"Select","Id")
                
                 <span asp-validation-for="Importance_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    @Html.Partial("_BackButtonList")
+    </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

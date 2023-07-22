@@ -24,9 +24,8 @@ namespace OfficeFileManagementSystem.Controllers
         // GET: IncomingFiles
         public async Task<IActionResult> Index()
         {
-           
-            return _context.incomingFiles != null ? 
-                          View(await _context.incomingFiles.ToListAsync()) :
+            ViewBag.Impt = await _context.importances.ToListAsync();   
+            return _context.incomingFiles != null ? View(await _context.incomingFiles.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbSet.incomingFiles'  is null.");
         }
 
@@ -38,13 +37,17 @@ namespace OfficeFileManagementSystem.Controllers
                 return NotFound();
             }
 
+            
+
             var incomingFile = await _context.incomingFiles
                 .FirstOrDefaultAsync(m => m.Incoming_File_Id == id);
+            
             if (incomingFile == null)
             {
                 return NotFound();
             }
-            
+            var importance = await _context.importances.FirstOrDefaultAsync(m => m.Id == incomingFile.Importance_ID);
+            ViewBag.impt = importance.Type.ToString();
             return View(incomingFile);
         }
 
@@ -100,6 +103,19 @@ namespace OfficeFileManagementSystem.Controllers
             {
                 return NotFound();
             }
+            List<SelectListItem> List = new List<SelectListItem>();
+            foreach (var i in _context.importances) { 
+                SelectListItem selectListItem = new SelectListItem { 
+                        Value = i.Id.ToString(),
+                        Text =  i.Type
+                };
+                
+                List.Add(selectListItem);
+                       
+            }
+            ViewBag.List = List;
+            
+            
             return View(incomingFile);
         }
 

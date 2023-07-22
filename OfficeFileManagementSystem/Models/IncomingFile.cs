@@ -11,13 +11,14 @@ namespace OfficeFileManagementSystem.Models
 
         [Required]
 
-        public string ? FileName { get; set; }
+        public string? FileName { get; set; }
 
         [Column("Date_Allowed", TypeName = "Date")]
         public DateTime Date_Allowed { get; set; }
 
-        public string ?FileType { get; set; }
+        public string? FileType { get; set; }
 
         public int Importance_ID { get; set; }
+      
     }
 }

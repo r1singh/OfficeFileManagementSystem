@@ -17,9 +17,7 @@ namespace OfficeFileManagementSystem.Models
         [Required]
 
         public string ? Employee_Designation { get; set;}
-        [MaxLength(10)]
-        [DisplayName("Contact Number")]
-        public int ? Contact_Number { get; set;}
+       
         
     }
 }
